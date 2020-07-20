@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>br.com.dsf.artio-server</groupId>
+    <artifactId>artio-server</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <properties>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
+        <artio.version>0.70</artio.version>
+    </properties>
+
+    <dependencies>
+        <!-- https://mvnrepository.com/artifact/uk.co.real-logic/artio-core -->
+        <dependency>
+            <groupId>uk.co.real-logic</groupId>
+            <artifactId>artio-core</artifactId>
+            <version>${artio.version}</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/uk.co.real-logic/artio-codecs -->
+        <dependency>
+            <groupId>uk.co.real-logic</groupId>
+            <artifactId>artio-codecs</artifactId>
+            <version>${artio.version}</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/uk.co.real-logic/artio-session-codecs -->
+        <dependency>
+            <groupId>uk.co.real-logic</groupId>
+            <artifactId>artio-session-codecs</artifactId>
+            <version>${artio.version}</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/uk.co.real-logic/artio-ilink3-codecs -->
+        <dependency>
+            <groupId>uk.co.real-logic</groupId>
+            <artifactId>artio-ilink3-codecs</artifactId>
+            <version>${artio.version}</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/uk.co.real-logic/artio-session-fixt-codecs -->
+        <dependency>
+            <groupId>uk.co.real-logic</groupId>
+            <artifactId>artio-session-fixt-codecs</artifactId>
+            <version>${artio.version}</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/uk.co.real-logic/artio-ilink3-impl -->
+        <dependency>
+            <groupId>uk.co.real-logic</groupId>
+            <artifactId>artio-ilink3-impl</artifactId>
+            <version>${artio.version}</version>
+            <scope>runtime</scope>
+        </dependency>
+
+    </dependencies>
+
+
+    <build>
+        <plugins>
+            <!-- Maven Assembly Plugin -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>make-assembly</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                        <configuration>
+                            <!-- get all project dependencies -->
+                            <descriptorRefs>
+                                <descriptorRef>jar-with-dependencies</descriptorRef>
+                            </descriptorRefs>
+                            <!-- MainClass in mainfest make a executable jar -->
+                            <archive>
+                                <manifest>
+                                    <mainClass>br.com.dsf.artio.server.SampleServer</mainClass>
+                                </manifest>
+                            </archive>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+
+</project>
